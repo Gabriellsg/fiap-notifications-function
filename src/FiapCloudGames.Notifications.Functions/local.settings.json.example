@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "RabbitMQ": "amqp://admin:rabbitmq123@localhost:5672/",
+    "RabbitMq__Host": "localhost",
+    "RabbitMq__Port": "5672",
+    "RabbitMq__Username": "admin",
+    "RabbitMq__Password": "rabbitmq123"
+  }
+}
