@@ -1,28 +1,22 @@
-using System.Text.Json;
 using FiapCloudGames.Notifications.Application.Events;
 using FiapCloudGames.Notifications.Application.Services;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace FiapCloudGames.Notifications.Functions.Functions
 {
-    public class PagamentoProcessadoFunction
+    public class PagamentoProcessadoFunction(
+        PagamentoProcessadoNotificacaoService service,
+        ILogger<PagamentoProcessadoFunction> logger)
     {
         private static readonly JsonSerializerOptions JsonOptions = new()
         {
             PropertyNameCaseInsensitive = true
         };
 
-        private readonly PagamentoProcessadoNotificacaoService _service;
-        private readonly ILogger<PagamentoProcessadoFunction> _logger;
-
-        public PagamentoProcessadoFunction(
-            PagamentoProcessadoNotificacaoService service,
-            ILogger<PagamentoProcessadoFunction> logger)
-        {
-            _service = service;
-            _logger = logger;
-        }
+        private readonly PagamentoProcessadoNotificacaoService _service = service;
+        private readonly ILogger<PagamentoProcessadoFunction> _logger = logger;
 
         [Function(nameof(PagamentoProcessadoFunction))]
         public async Task Run(

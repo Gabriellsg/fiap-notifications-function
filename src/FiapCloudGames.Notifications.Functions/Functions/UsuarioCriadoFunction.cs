@@ -1,28 +1,22 @@
-using System.Text.Json;
 using FiapCloudGames.Notifications.Application.Events;
 using FiapCloudGames.Notifications.Application.Services;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace FiapCloudGames.Notifications.Functions.Functions
 {
-    public class UsuarioCriadoFunction
+    public class UsuarioCriadoFunction(
+        UsuarioCriadoNotificacaoService service,
+        ILogger<UsuarioCriadoFunction> logger)
     {
         private static readonly JsonSerializerOptions JsonOptions = new()
         {
             PropertyNameCaseInsensitive = true
         };
 
-        private readonly UsuarioCriadoNotificacaoService _service;
-        private readonly ILogger<UsuarioCriadoFunction> _logger;
-
-        public UsuarioCriadoFunction(
-            UsuarioCriadoNotificacaoService service,
-            ILogger<UsuarioCriadoFunction> logger)
-        {
-            _service = service;
-            _logger = logger;
-        }
+        private readonly UsuarioCriadoNotificacaoService _service = service;
+        private readonly ILogger<UsuarioCriadoFunction> _logger = logger;
 
         [Function(nameof(UsuarioCriadoFunction))]
         public async Task Run(

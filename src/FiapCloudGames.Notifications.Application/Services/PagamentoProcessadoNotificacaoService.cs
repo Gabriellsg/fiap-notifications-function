@@ -3,14 +3,9 @@ using FiapCloudGames.Notifications.Application.Interfaces;
 
 namespace FiapCloudGames.Notifications.Application.Services
 {
-    public class PagamentoProcessadoNotificacaoService
+    public class PagamentoProcessadoNotificacaoService(IEmailService emailService)
     {
-        private readonly IEmailService _emailService;
-
-        public PagamentoProcessadoNotificacaoService(IEmailService emailService)
-        {
-            _emailService = emailService;
-        }
+        private readonly IEmailService _emailService = emailService;
 
         public Task NotificarAsync(PagamentoProcessadoEvent evento)
         {

@@ -3,14 +3,9 @@ using FiapCloudGames.Notifications.Application.Interfaces;
 
 namespace FiapCloudGames.Notifications.Application.Services
 {
-    public class UsuarioCriadoNotificacaoService
+    public class UsuarioCriadoNotificacaoService(IEmailService emailService)
     {
-        private readonly IEmailService _emailService;
-
-        public UsuarioCriadoNotificacaoService(IEmailService emailService)
-        {
-            _emailService = emailService;
-        }
+        private readonly IEmailService _emailService = emailService;
 
         public Task NotificarAsync(UsuarioCriadoEvent evento)
         {

@@ -8,18 +8,12 @@ namespace FiapCloudGames.Notifications.Infrastructure.Messaging
     /// <summary>
     /// Garante filas/exchanges usados pelos triggers (mesmo topologia da NotificationsAPI).
     /// </summary>
-    public class RabbitMqTopologyInitializer : IHostedService
+    public class RabbitMqTopologyInitializer(
+        IConfiguration configuration,
+        ILogger<RabbitMqTopologyInitializer> logger) : IHostedService
     {
-        private readonly IConfiguration _configuration;
-        private readonly ILogger<RabbitMqTopologyInitializer> _logger;
-
-        public RabbitMqTopologyInitializer(
-            IConfiguration configuration,
-            ILogger<RabbitMqTopologyInitializer> logger)
-        {
-            _configuration = configuration;
-            _logger = logger;
-        }
+        private readonly IConfiguration _configuration = configuration;
+        private readonly ILogger<RabbitMqTopologyInitializer> _logger = logger;
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
